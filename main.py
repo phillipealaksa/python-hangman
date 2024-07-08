@@ -21,6 +21,23 @@ def process_data(data):
             wordlengths[length] = [word]
     return wordlengths
 
+def main(wordsbylength):
+    os.system('cls')
+    print("1. Play Game")
+    print("2. Exit")
+    choice = input("Enter your choice: ")
+    while not (choice == "1" or choice == "2"):
+        input("Invalid choice")
+        os.system('cls')
+        print("1. Play Game")
+        print("2. Exit")
+        choice = input("Enter your choice: ")
+    if choice == "1":
+        
+        main(wordsbylength)
+    else:
+        sys.exit()
+
 if __name__ == '__main__':
     os.system('cls')
 
@@ -38,6 +55,7 @@ if __name__ == '__main__':
     if response.status_code == 200:
         data = response.json()
         wordsbylength = process_data(data)
+        main(wordsbylength)
     else:
         print("Failed to fetch data")
         sys.exit()
