@@ -11,6 +11,15 @@ def load_screen():
         os.system('cls')
         i += 1
 
+def process_data(data):
+    wordlengths = {}
+    for word in data:
+        length = len(word)
+        if length in wordlengths:
+            wordlengths[length].append(word)
+        else:
+            wordlengths[length] = [word]
+    return wordlengths
 
 if __name__ == '__main__':
     os.system('cls')
@@ -28,7 +37,7 @@ if __name__ == '__main__':
     
     if response.status_code == 200:
         data = response.json()
-        
+        wordsbylength = process_data(data)
     else:
         print("Failed to fetch data")
         sys.exit()
