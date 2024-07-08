@@ -2,6 +2,7 @@ import sys, os
 import requests
 import threading
 import time
+import random
 
 def load_screen():
     i = 0
@@ -20,6 +21,20 @@ def process_data(data):
         else:
             wordlengths[length] = [word]
     return wordlengths
+
+def get_word(wordsbylength):
+    length = input("Enter the length of the word you want to guess: ")
+    while not length.isdigit() or int(length) not in wordsbylength:
+        if not length.isdigit():
+            input("Invalid input")
+        elif int(length) not in wordsbylength:
+            input("No words of this length")
+        os.system('cls')
+        length = input("Enter the length of the word you want to guess: ")
+    length = int(length)
+    word = random.choice(wordsbylength[length])
+    word = word.upper()
+    return word
 
 def main(wordsbylength):
     os.system('cls')
