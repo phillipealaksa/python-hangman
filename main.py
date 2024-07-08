@@ -93,7 +93,7 @@ def main(wordsbylength):
         print("2. Exit")
         choice = input("Enter your choice: ")
     if choice == "1":
-        
+        game(get_word(wordsbylength))
         main(wordsbylength)
     else:
         sys.exit()
