@@ -36,6 +36,51 @@ def get_word(wordsbylength):
     word = word.upper()
     return word
 
+def get_all_indices(word, char):
+    indices = []
+    for i in range(len(word)):
+        if word[i] == char:
+            indices.append(i)
+    return indices
+
+def game(word):
+    os.system('cls')
+    lives = 10
+    currentlist = ["_"] * len(word)
+    currentstring = ''.join(currentlist)
+    guessed = []
+
+    while lives > 0 and currentstring != word:
+        print("Lives: " + str(lives))
+        print("Guessed: " + str(guessed))
+        print("Current: " + currentstring)
+        char = input("Enter a character: ")
+        char = char.upper()
+        if len(char) != 1 or not char.isalpha():
+            input("Invalid input")
+            os.system('cls')
+            continue
+        if char in guessed:
+            input("You have already guessed this character")
+            os.system('cls')
+            continue
+        guessed.append(char)
+        if char in word:
+            indicies = get_all_indices(word, char)
+            for index in indicies:
+                currentlist[index] = char
+            currentstring = ''.join(currentlist)
+            input("Correct guess")
+            os.system('cls')
+        else:
+            lives -= 1
+            input("Incorrect guess")
+            os.system('cls')
+    if lives == 0:
+        input("You lost! The word was: " + word)
+    else:
+        input("You won! The word was: " + word)
+
 def main(wordsbylength):
     os.system('cls')
     print("1. Play Game")
